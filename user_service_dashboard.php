@@ -1,12 +1,43 @@
 <?php
-$userid="";
-if(!empty($_REQUEST['userid'])){
-    $userid=$_REQUEST['userid'];
+$clickedbookid = "";
+$clicked = "";
+$userid = "";
+$bookid = "";
+
+
+// $a=array("red","green");
+// array_push($a,"blue","yellow");
+// print_r($checkin);
+
+// $element = 'world'; 
+// $array = []; 
+// array_push($array, $element); 
+// print_r($array);
+
+if (!empty($_REQUEST['clickedbookid'])) {
+    $clickedbookid = $_REQUEST['clickedbookid'];
+}
+// $checkin = ['hello'];
+// array_push($checkin, $clickedbookid);
+// print_r($checkin);
+
+
+// $_SESSION['checkin']=array(); // Makes the session an array
+//     array_push($_SESSION['checkin'],$clickedbookid);   
+//     print_r($_SESSION['checkin']);
+
+
+if (!empty($_REQUEST['userid'])) {
+    $userid = $_REQUEST['userid'];
+}
+if (!empty($_REQUEST['clicked'])) {
+    $clicked = $_REQUEST['clicked'];
+
 }
 
-$username="";
-if(!empty($_REQUEST['username'])){
-    $username=$_REQUEST['username'];
+$username = "";
+if (!empty($_REQUEST['username'])) {
+    $username = $_REQUEST['username'];
 }
 
 $msg = "";
@@ -15,11 +46,11 @@ if (!empty($_REQUEST['msg'])) {
 }
 
 $is_page_refreshed = (isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] == 'max-age=0');
- 
-if($is_page_refreshed ) {
-  $_REQUEST['view']="";
-//   $msg="";
-} 
+
+if ($is_page_refreshed) {
+    $_REQUEST['view'] = "";
+    //   $msg="";
+}
 
 ?>
 <!DOCTYPE html>
@@ -27,8 +58,11 @@ if($is_page_refreshed ) {
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
     <style>
         body {
             font-family: Arial;
@@ -79,8 +113,8 @@ if($is_page_refreshed ) {
         }
 
         .row {
-            width:70%;
-            margin:auto;
+            width: 70%;
+            margin: auto;
         }
 
         #addbook {
@@ -90,34 +124,38 @@ if($is_page_refreshed ) {
         th,
         td {
             text-align: center;
-            border:3px solid white;
-            background-color:#caffc1;
+            border: 3px solid white;
+            background-color: #caffc1;
         }
-        table button{
-            color:black;
+
+        table button {
+            color: black;
             background-color: #fff8c6;
-            width:80%;
+            width: 80%;
             border-radius: 4px;
         }
-        #bookdetails{
-            background-color:#caffc1;
+
+        #bookdetails {
+            background-color: #caffc1;
         }
-        #bookdetails p{
+
+        #bookdetails p {
             /* margin:0 auto; */
             /* float:right; */
             /* overflow: auto; */
         }
-        .right{
+
+        .right {
             /* margin: auto; */
             /* border: 2px solid black; */
-            width:500px;
-            float:right;
+            width: 500px;
+            float: right;
             /* text-align: center; */
         }
-        .clear{
+
+        .clear {
             clear: both;
         }
-        
     </style>
 </head>
 
@@ -125,106 +163,118 @@ if($is_page_refreshed ) {
 
 
 
-<div class="alert alert-success">
-    <strong><?php echo $msg?></strong> 
-  </div>
+    <div class="alert alert-success">
+        <strong>
+            <?php echo $msg ?>
+        </strong>
+    </div>
     <div class="outerdiv">
-        <div class="row" ><img  class="imglogo" src="images/logo.png" /></div>
+        <div class="row"><img class="imglogo" src="images/logo.png" /></div>
         <div class="tab">
-           
+
             <button class="tablinks" onclick="openCity(event, 'myaccount')">MY ACCOUNT</button>
             <button class="tablinks" onclick="openCity(event, 'requestbook')">REQUEST BOOK</button>
             <button class="tablinks" onclick="openCity(event, 'bookreport')">BOOK REPORT</button>
             <a href="index.php"><button>LOG OUT</button></a>
             <!-- <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button> -->
+            <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+            <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+            <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+            <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+            <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button> -->
         </div>
 
-    
 
-      <div class="tabcontent" id="myaccount">
-      <div>
-        <?php
-        include('dataclass.php');
-        $obj=new data();
-        $obj->setConnection();
-        $result = $obj->fetchLoggedUser($userid);
-        foreach($result as $row){
-            $username=$row[1];
-            $useremail=$row[2];
-            $usertype=$row[4];
-        } 
-        echo "User Name :".$username."<br>";
-        echo "User Email :".$useremail."<br>";
-        echo "User Type :".$usertype."<br>";
-        
-        
-        ?>
-        </div>
+
+        <div class="tabcontent" id="myaccount">
+            <div>
+                <?php
+                include('dataclass.php');
+                $obj = new data();
+                $obj->setConnection();
+                $result = $obj->fetchLoggedUser($userid);
+                foreach ($result as $row) {
+                    $username = $row[1];
+                    $useremail = $row[2];
+                    $usertype = $row[4];
+                }
+                echo "User Name :" . $username . "<br>";
+                echo "User Email :" . $useremail . "<br>";
+                echo "User Type :" . $usertype . "<br>";
+                ?>
+            </div>
         </div>
 
 
         <div class="tabcontent" id="requestbook">
-        <div>
-            <?php
-            $obj=new data();
-            $obj->setConnection();
-            $result=$obj->userbookrequest();
-            $table = "<table style='width:100%'><tr><th>Book Photo</th><th>Book Name</th><th>Book Author</th><th>Branch</th><th>Price</th><th>Request Book</th></tr>";
-            foreach($result as $row){
-                $table.="<tr>";
-                $table.="<td><img src='images/$row[1]' width='150px' height='150px' style='margin-top:10px;margin-bottom:10px'></td>";
-                $table.="<td>$row[2]</td>";
-                $table.="<td>$row[4]</td>";
-                $table.="<td>$row[6]</td>";
-                $table.="<td>$row[7]</td>";
-                // $table.="<td><a href='user_service_dashboard.php'><button>Request Book</button></td>";
-                $table.="<td><a href='user_service_dashboard.php?userid=$userid&username=$username'><button>Request Book</button></a></td>";
+            <div>
+                <?php
+                $obj = new data();
+                $obj->setConnection();
+                $result = $obj->userbookrequest($userid);
+                $table = "<table style='width:100%'><tr><th>Book Photo</th><th>Book Name</th><th>Book Author</th><th>Branch</th><th>Price</th><th>Request Book</th></tr>";
+                foreach ($result as $row) {
+                    $bookid = $row[0];
+                    $table .= "<tr>";
+                    $table .= "<td><img src='images/$row[1]' width='150px' height='150px' style='margin-top:10px;margin-bottom:10px'></td>";
+                    $table .= "<td>$row[2]</td>";
+                    $table .= "<td>$row[4]</td>";
+                    $table .= "<td>$row[6]</td>";
+                    $table .= "<td>$row[7]</td>";
 
-            }
-            $table.="</table>";
-            echo $table;
+                    $result1 = $obj->checkrequestedstatus($userid,$bookid);
+                 
+                    
+                    if($result1->rowCount()>0){
+                        $table .= "<td>Requested</td>";
 
-        ?>
+                    }
+                    else{
+                    $table .= "<td id='buttonrequest'><a href='user_requestbook.php?userid=$userid&username=$username&bookid=$bookid'><button>Request Book</button></a></td>";
+                    }
+                    $table.="</tr>";
+                  
+                }
+                $table .= "</table>";
+    
+                echo $table;
+
+                ?>
+            </div>
         </div>
-        </div>
 
-            <div class="tabcontent" id="bookreport">
+        <div class="tabcontent" id="bookreport">
 
             <div>
                 <?php
-                
-                    $obj=new data();
-                    $obj->setConnection();
-                    $result=$obj->personbookreport($userid);
-                    $table="<table style='width:100%'><tr><th>Issued By</th><th>Book Name</th><th>Issue Date</th><th>Last Date</th><th>Fine</th><th>Return Book</th></tr>";
-                    foreach($result as $row){
-                        $table.="<tr>";
-                        $table.="<td>$username</td>";
-                        $table.="<td>$row[3]</td>";
-                        $table.="<td>$row[6]</td>";
-                        $table.="<td>$row[7]</td>";
-                        $table.="<td>$row[8]</td>";
-                        $table.="<td><a href='user_service_dashboard.php?username=$username&userid=$userid'><button>Return</button></a></td>";
-                        $table.="</tr>";
-                    }
-                    $table.="</table>";
-                    echo $table;
-                
+
+                $obj = new data();
+                $obj->setConnection();
+                $result = $obj->personbookreport($userid);
+                $table = "<table style='width:100%'><tr><th>Issued By</th><th>Book Name</th><th>Issue Date</th><th>Last Date</th><th>Fine</th><th>Return Book</th></tr>";
+                foreach ($result as $row) {
+                    $table .= "<tr>";
+                    $table .= "<td>$username</td>";
+                    $table .= "<td>$row[3]</td>";
+                    $table .= "<td>$row[6]</td>";
+                    $table .= "<td>$row[7]</td>";
+                    $table .= "<td>$row[8]</td>";
+                    $table .= "<td><a href='user_service_dashboard.php?username=$username&userid=$userid'><button>Return</button></a></td>";
+                    $table .= "</tr>";
+                }
+                $table .= "</table>";
+                echo $table;
+
                 ?>
             </div>
 
-            </div>
+        </div>
 
-      </div>
+    </div>
 
-    
 
-       
+
+
     </div>
     <script>
         function openCity(evt, cityName) {
@@ -239,6 +289,9 @@ if($is_page_refreshed ) {
             }
             document.getElementById(cityName).style.display = "block";
             evt.currentTarget.className += " active";
+        }
+        function changehtml() {
+            document.getElementById("buttonrequest").innerHTML = "REQUESTED";
         }
     </script>
 
