@@ -54,8 +54,7 @@ class data extends db
         $result = $this->connection->query($q);
         if ($result->rowCount() > 0) {
             header("Location:admin_service_dashboard.php?msg=Book named $bookname already exists!!!");
-        } 
-        else {
+        } else {
             $q = "INSERT INTO book(id,bookpic,bookname,bookdetail,bookauthor,bookpub,branch,bookprice,bookquantity,bookava,bookrent) 
         values('','$bookpic','$bookname','$bookdetail','$bookauthor','$bookpub','$branch','$bookprice',$bookquant,'$bookquant','0')";
 
@@ -63,8 +62,7 @@ class data extends db
 
             if ($this->connection->exec($q)) {
                 header("Location:admin_service_dashboard.php?msg=Book Added Successfully!!");
-            } 
-            else {
+            } else {
                 header("Location:admin_service_dashboard.php?msg=Book Not Added ..Try Again");
             }
         }
@@ -82,21 +80,18 @@ class data extends db
         $result = $this->connection->query($q);
         if ($result->rowCount() > 0) {
             header("Location:admin_service_dashboard.php?msg=User already Exist!!");
-        } 
-        else {
+        } else {
 
             $q = "SELECT * from user_data where email='$email' or name='$name'";
             $result = $this->connection->query($q);
             if ($result->rowCount() > 0) {
                 header("Location:admin_service_dashboard.php?msg=Enter unique Email-id and Student Name!!!");
-            } 
-            else {
+            } else {
 
                 $q = "INSERT INTO user_data (id,name,email,password,type) VALUES('','$name','$email','$pass','$type')";
                 if ($this->connection->exec($q)) {
                     header("Location:admin_service_dashboard.php?msg=Student Added Successfully!!!");
-                } 
-                else {
+                } else {
                     header("Location:admin_service_dashboard.php?msg=Student Not Added ..Try Again");
                 }
             }
@@ -161,12 +156,10 @@ class data extends db
                 $q = "INSERT into issue_book (id,userid,issuename,issuebook,issuetype,issuedays,issuedate,issuereturn,fine) VALUES('','$userid','$personname','$bookname','$type','$days','$issuedate','$returndate','0')";
                 if ($this->connection->exec($q)) {
                     header("Location:admin_service_dashboard.php?msg=Book Issued Successfully!!");
-                } 
-                else {
+                } else {
                     header("Location:admin_service_dashboard.php?msg=Book Not Issued..Try Again ");
                 }
-            } 
-            else {
+            } else {
                 header("Location:admin_service_dashboard.php?msg=Book Not Issued..Try Again ");
             }
         }
@@ -232,8 +225,8 @@ class data extends db
     function userbookrequest($userid)
     {
 
-        $q="SELECT issuebook from issue_book where userid='$userid'";
-        $notissuedbooks="SELECT * from book where bookname not in($q)";
+        $q = "SELECT issuebook from issue_book where userid='$userid'";
+        $notissuedbooks = "SELECT * from book where bookname not in($q) and bookava!=0";
         $result = $this->connection->query($notissuedbooks);
         return $result;
 
@@ -272,7 +265,7 @@ class data extends db
             $q = "INSERT into request_book (id,userid,bookid,username,usertype,bookname,issuedays)VALUES('','$userid','$bookid','$username','$usertype','$bookname','21')";
         }
         if ($this->connection->exec($q)) {
-            header("Location:user_service_dashboard.php?userid=$userid&msg=Book Requested Successfully!!&clicked=true&clickedbookid=$bookid");
+            header("Location:user_service_dashboard.php?userid=$userid&msg=Book named $bookname Requested Successfully!!&clicked=true&clickedbookid=$bookid");
         }
     }
 
@@ -283,23 +276,83 @@ class data extends db
         return $result;
     }
 
-    function bookrequest($userid,$bookid,$personname,$usertype,$bookname,$days,$issuedate,$returndate)
-    {
-     
-        $q="INSERT INTO issue_book (id,userid,issuename,issuebook,issuetype,issuedays,issuedate,issuereturn,fine) VALUES('','$userid','$personname','$bookname','$usertype','$days','$issuedate','$returndate',0)";
-        if($this->connection->exec($q)){
 
-            $q="DELETE from request_book where userid='$userid' and bookid='$bookid'";
-            if($this->connection->exec($q)){
-            header("Location:admin_service_dashboard.php?msg=Book Requested by $personname is approved!!! ");
+
+    // $q="SELECT * from book where bookname='$bookname'";
+    // $result = $this->connection->query($q);
+
+    // foreach($result as $row){
+    //     $bookavailable=$row['bookava'] + 1;
+    //     $booksonrent=$row['bookrent'] - 1;
+    // }
+
+    // $q="UPDATE book SET bookava='$bookavailable' , bookrent='$booksonrent'   where bookname = '$bookname'";
+
+
+
+
+    function bookrequest($userid, $bookid, $personname, $usertype, $bookname, $days, $issuedate, $returndate)
+    {
+
+        $q = "INSERT INTO issue_book (id,userid,issuename,issuebook,issuetype,issuedays,issuedate,issuereturn,fine) VALUES('','$userid','$personname','$bookname','$usertype','$days','$issuedate','$returndate',0)";
+        if ($this->connection->exec($q)) {
+
+            $q = "DELETE from request_book where userid='$userid' and bookid='$bookid'";
+            if ($this->connection->exec($q)) {
+                $q = "SELECT * from book where bookname='$bookname'";
+                $result = $this->connection->query($q);
+
+                foreach ($result as $row) {
+                    $bookavailable = $row['bookava'] - 1;
+                    $booksonrent = $row['bookrent'] + 1;
+                }
+
+                $q = "UPDATE book SET bookava='$bookavailable' , bookrent='$booksonrent'   where bookname = '$bookname'";
+                if ($this->connection->exec($q)) {
+
+                    header("Location:admin_service_dashboard.php?msg=Book Requested by $personname is approved!!! ");
+                }
+
+            }
         }
     }
-    }
 
-    function checkrequestedstatus($userid,$bookid){
-        $q="SELECT * from request_book where userid='$userid' and bookid='$bookid'";
+    function checkrequestedstatus($userid, $bookid)
+    {
+        $q = "SELECT * from request_book where userid='$userid' and bookid='$bookid'";
         $result = $this->connection->query($q);
         return $result;
+
+    }
+
+
+    // $q = "SELECT * from book  where bookname='$bookname'";
+    // $result = $this->connection->query($q);
+    // foreach ($result as $row) {
+    //     $id = $row['id'];
+    //     $bookavail = $row['bookava'] - 1;
+    //     $bookrent = $row['bookrent'] + 1;
+
+    // $q = "UPDATE book SET bookava= '$bookavail' , bookrent='$bookrent' where id='$id'";
+
+
+    function returnbook($userid, $bookname)
+    {
+        $q = "DELETE FROM issue_book where userid='$userid' and issuebook = '$bookname'";
+        if ($this->connection->exec($q)) {
+            $q = "SELECT * from book where bookname='$bookname'";
+            $result = $this->connection->query($q);
+
+            foreach ($result as $row) {
+                $bookavailable = $row['bookava'] + 1;
+                $booksonrent = $row['bookrent'] - 1;
+            }
+
+            $q = "UPDATE book SET bookava='$bookavailable' , bookrent='$booksonrent'   where bookname = '$bookname'";
+            if ($this->connection->exec($q)) {
+                header("Location:user_Service_dashboard.php?userid=$userid&msg=Book named $bookname Returned Successfully!!!");
+            }
+        }
 
     }
 }

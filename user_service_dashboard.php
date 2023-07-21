@@ -14,9 +14,7 @@ $bookid = "";
 // array_push($array, $element); 
 // print_r($array);
 
-if (!empty($_REQUEST['clickedbookid'])) {
-    $clickedbookid = $_REQUEST['clickedbookid'];
-}
+
 // $checkin = ['hello'];
 // array_push($checkin, $clickedbookid);
 // print_r($checkin);
@@ -156,6 +154,16 @@ if ($is_page_refreshed) {
         .clear {
             clear: both;
         }
+        .styleaccount{
+            background-color: #caffc1;
+            padding:10px;
+        }
+        h6{
+            display: inline-block;
+        }
+        h3{
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -187,7 +195,8 @@ if ($is_page_refreshed) {
 
 
         <div class="tabcontent" id="myaccount">
-            <div>
+            <div class="styleaccount">
+                <h3>ACCOUNT DETAILS</h3>
                 <?php
                 include('dataclass.php');
                 $obj = new data();
@@ -198,9 +207,9 @@ if ($is_page_refreshed) {
                     $useremail = $row[2];
                     $usertype = $row[4];
                 }
-                echo "User Name :" . $username . "<br>";
-                echo "User Email :" . $useremail . "<br>";
-                echo "User Type :" . $usertype . "<br>";
+                echo "<h6><b>User Name : </b></h6> " . $username . "<br>";
+                echo "<h6><b>User Email : </b></h6> " . $useremail . "<br>";
+                echo "<h6><b>User Type : </b></h6> " . $usertype . "<br>";
                 ?>
             </div>
         </div>
@@ -208,6 +217,7 @@ if ($is_page_refreshed) {
 
         <div class="tabcontent" id="requestbook">
             <div>
+
                 <?php
                 $obj = new data();
                 $obj->setConnection();
@@ -259,7 +269,7 @@ if ($is_page_refreshed) {
                     $table .= "<td>$row[6]</td>";
                     $table .= "<td>$row[7]</td>";
                     $table .= "<td>$row[8]</td>";
-                    $table .= "<td><a href='user_service_dashboard.php?username=$username&userid=$userid'><button>Return</button></a></td>";
+                    $table .= "<td><a href='user_returnbook.php?username=$username&userid=$userid&bookname=$row[3]'><button>Return</button></a></td>";
                     $table .= "</tr>";
                 }
                 $table .= "</table>";
