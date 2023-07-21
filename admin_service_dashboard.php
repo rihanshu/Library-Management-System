@@ -68,7 +68,7 @@ if ($is_page_refreshed) {
             /* text-align:center; */
             margin: auto;
             margin-top: 3%;
-            width: 79%;
+            width: 80%;
         }
 
         .row {
@@ -76,7 +76,7 @@ if ($is_page_refreshed) {
             margin: auto;
         }
 
-   
+
         th,
         td {
             text-align: center;
@@ -114,51 +114,57 @@ if ($is_page_refreshed) {
         }
 
         form {
-            
+
             background-color: #caffc1;
             text-align: center;
-            padding:40px;
-            
+            padding: 40px;
+
         }
-        
+
 
         input,
         select {
             width: 60%;
             padding: 6px 10px;
-            margin: 8px ;
+            margin: 8px;
             display: inline-block;
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
         }
-        h3{
+
+        h3 {
             text-align: center;
         }
 
         input[type=submit] {
-  width: 45%;
+            width: 45%;
 
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 15px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.formstyle{
-    /* border:2px solid black; */
-    /* float:right; */
-    width:50%;
-    text-align:right;
-}
-span{
-    float:left;
-    margin-left:27%;
-    margin-top:8px;
-    margin-bottom:8px;
-}
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .formstyle {
+
+            width: 50%;
+            text-align: right;
+        }
+
+        span {
+            float: left;
+            margin-left: 27%;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 
@@ -202,29 +208,32 @@ span{
             <div>
                 <form action="addbookserver_page.php" method="post">
                     <h3>ADD NEW BOOK</h3>
-                    <div class ="formstyle">
-                    <label for="bookname">Book Name: </label><input type="text" name="bookname" id="bookname"> <br>
-                    <label for="bookdetail">Detail: </label><input type="text" name="bookdetail" id="bookdetail"> <br>
-                    <label for="bookauthor">Author: </label><input type="text" name="bookauthor" id="bookauthor"> <br>
-                    <label for="bookpub">Publication: </label><input type="text" name="bookpub" id="bookpub"><br>
-                    <span>Branch:</span>
-                    <label class="radiocontainer" >IT
-                    <input type="radio" name="branch" id="IT" value="IT"></label>
-                    <label class="radiocontainer" >CSE
-                    <input type="radio" name="branch" id="CSE" value="CSE"></label>
-                    <label class="radiocontainer" >EEE
-                    <input type="radio" name="branch" id="EEE" value="EEE"></label>
-                    <label class="radiocontainer" >Civil
-                    <input type="radio" name="branch" id="Civil" value="Civil"></label>
-                    
+                    <div class="formstyle">
+                        <label for="bookname">Book Name: </label><input type="text" name="bookname" id="bookname"> <br>
+                        <label for="bookdetail">Detail: </label><input type="text" name="bookdetail" id="bookdetail">
+                        <br>
+                        <label for="bookauthor">Author: </label><input type="text" name="bookauthor" id="bookauthor">
+                        <br>
+                        <label for="bookpub">Publication: </label><input type="text" name="bookpub" id="bookpub"><br>
+                        <span>Branch:</span>
+                        <label class="radiocontainer">IT
+                            <input type="radio" name="branch" id="IT" value="IT"></label>
+                        <label class="radiocontainer">CSE
+                            <input type="radio" name="branch" id="CSE" value="CSE"></label>
+                        <label class="radiocontainer">EEE
+                            <input type="radio" name="branch" id="EEE" value="EEE"></label>
+                        <label class="radiocontainer">Civil
+                            <input type="radio" name="branch" id="Civil" value="Civil"></label>
 
 
-                    <br>
-                    
-                    <label for="bookprice">Price: </label><input type="text" name="bookprice" id="bookprice"> <br>
-                    <label for="bookquant">Quantity: </label><input type="text" name="bookquant" id="bookquant"> <br>
-                    <label for="bookpic">Book Photo: </label><input type="file" name="bookpic" id="bookpic"> <br>
-                </div>
+
+                        <br>
+
+                        <label for="bookprice">Price: </label><input type="text" name="bookprice" id="bookprice"> <br>
+                        <label for="bookquant">Quantity: </label><input type="text" name="bookquant" id="bookquant">
+                        <br>
+                        <label for="bookpic">Book Photo: </label><input type="file" name="bookpic" id="bookpic"> <br>
+                    </div>
                     <input type="submit" name="submit" value="SUBMIT">
                 </form>
             </div>
@@ -234,15 +243,15 @@ span{
             <div>
                 <form action="addpersonserver_page.php" method="post">
                     <h3>ADD STUDENT</h3>
-                    <div class ="formstyle">
-                    <label for="username">Name: </label><input type="text" name="username" id="username"> <br>
-                    <label for="useremail">Email: </label><input type="email" name="useremail" id="useremail"> <br>
-                    <label for="userpass">Password: </label><input type="text" name="userpass" id="userpass"> <br>
-                    <label>Choose Type: </label><select name="type">
-                        <option value="student">student</option>
-                        <option value="teacher">teacher</option>
-                    </select><br>
-                </div>
+                    <div class="formstyle">
+                        <label for="username">Name: </label><input type="text" name="username" id="username"> <br>
+                        <label for="useremail">Email: </label><input type="email" name="useremail" id="useremail"> <br>
+                        <label for="userpass">Password: </label><input type="text" name="userpass" id="userpass"> <br>
+                        <label>Choose Type: </label><select name="type">
+                            <option value="student">student</option>
+                            <option value="teacher">teacher</option>
+                        </select><br>
+                    </div>
                     <input type="submit" value="SUBMIT">
                 </form>
             </div>
@@ -277,38 +286,38 @@ span{
             <div>
                 <form action="issuebook_server.php" method="get">
                     <h3>ISSUE BOOK</h3>
-                    <div class ="formstyle">
-                    <label>Choose Book: </label>
-                    <select name="bookname">
-                        <?php
-                        $obj = new data();
-                        $obj->setConnection();
-                        $result = $obj->getissuebook();
-                        foreach ($result as $row) {
-                            // 2
-                            // echo "<option value='". $row[2] ."'>" .$row[2] ."</option>";
-                            echo "<option value='$row[2]'> $row[2]</option>";
-                        }
-                        ?>
-                    </select>
-                    </br>
-                    <label>Select Student: </label>
-                    <select name="studentname">
-                        <?php
+                    <div class="formstyle">
+                        <label>Choose Book: </label>
+                        <select name="bookname">
+                            <?php
+                            $obj = new data();
+                            $obj->setConnection();
+                            $result = $obj->getissuebook();
+                            foreach ($result as $row) {
+                                // 2
+                                // echo "<option value='". $row[2] ."'>" .$row[2] ."</option>";
+                                echo "<option value='$row[2]'> $row[2]</option>";
+                            }
+                            ?>
+                        </select>
+                        </br>
+                        <label>Select Student: </label>
+                        <select name="studentname">
+                            <?php
 
-                        $obj = new data();
-                        $obj->setConnection();
-                        $result = $obj->studentrecord();
-                        foreach ($result as $row) {
-                            echo "<option>$row[1] </option>";
-                        }
+                            $obj = new data();
+                            $obj->setConnection();
+                            $result = $obj->studentrecord();
+                            foreach ($result as $row) {
+                                echo "<option>$row[1] </option>";
+                            }
 
-                        ?>
-                    </select>
-                    </br>
-                    <label for="days">Days: </label><input type="number" name="days">
-                    </br>
-                </div>
+                            ?>
+                        </select>
+                        </br>
+                        <label for="days">Days: </label><input type="number" name="days">
+                        </br>
+                    </div>
                     <input type="submit" value="SUBMIT">
                 </form>
             </div>
@@ -343,13 +352,12 @@ span{
             </div>
         </div>
 
-        <div class="tabcontent" id="bookdetails"
-            style="<?php if (!empty($_REQUEST['view'])) {
-                echo "display:block";
-                $id = $_REQUEST['view'];
-            } else {
-                echo "display:none";
-            } ?> ">
+        <div class="tabcontent" id="bookdetails" style="<?php if (!empty($_REQUEST['view'])) {
+            echo "display:block";
+            $id = $_REQUEST['view'];
+        } else {
+            echo "display:none";
+        } ?> ">
             <div>
                 <h2 style="text-align: center;">Book Details</h2>
 
@@ -436,7 +444,7 @@ span{
                 $obj = new data();
                 $obj->setConnection();
                 $result = $obj->fetchrequest();
-                $table = "<table width='100%'><tr><th>username</th><th>usertype</th><th>bookname</th><th>issuedays</th><th>Request</th></tr>";
+                $table = "<table width='100%'><tr><th>Username</th><th>Usertype</th><th>Bookname</th><th>Issuedays</th><th>Request</th></tr>";
                 foreach ($result as $row) {
                     $table .= "<tr>";
                     $table .= "<td>$row[3]</td>";
