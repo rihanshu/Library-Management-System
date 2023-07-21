@@ -340,6 +340,29 @@ if($is_page_refreshed ) {
             </div>
         </div>
 
+        <div class="tabcontent" id="bookrequest">
+            <div>
+                    <?php
+                    $obj=new data();
+                    $obj->setConnection();
+                    $result=$obj->fetchrequest();
+                    $table="<table width='100%'><tr><th>username</th><th>usertype</th><th>bookname</th><th>issuedays</th><th>Request</th></tr>";
+                    foreach($result as $row){
+                        $table.="<tr>";
+                        $table.="<td>$row[3]</td>";
+                        $table.="<td>$row[4]</td>";
+                        $table.="<td>$row[5]</td>";
+                        $table.="<td>$row[6]</td>";
+                        $table.="<td><a href='admin_bookrequest.php?userid=$row[1]&bookid=$row[2]&studentname=$row[3]&bookname=$row[5]&days=$row[6]&usertype=$row[4]'><button>Approve Request</button></a></td>";
+                        $table.="</tr>";
+                    }
+                    
+                    $table.="</table>";
+                    echo $table;
+                    ?>
+            </div>
+        </div>
+
     
 
        
