@@ -7,7 +7,8 @@ class db{
     }
 
     function setConnection(){
-        $this->connection=new PDO("mysql:hostname=localhost;dbname=mylibraryproject","root","");
+        $this->connection=new PDO("mysql:host=localhost;dbname=mylibraryproject","root","");
+
     }
 }
 

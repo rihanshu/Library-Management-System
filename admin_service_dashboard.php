@@ -284,7 +284,7 @@ if ($is_page_refreshed) {
 
         <div class="tabcontent" id="issuebook">
             <div>
-                <form action="issuebook_server.php" method="get">
+                <form action="issuebook_server.php" method="post">
                     <h3>ISSUE BOOK</h3>
                     <div class="formstyle">
                         <label>Choose Book: </label>

@@ -1,12 +1,12 @@
 <?php
 include('dataclass.php');
-$personname= $_GET['studentname'];
-$bookname =$_GET['bookname'];
-$days=$_GET['days'];
+$personname= $_POST['studentname'];
+$bookname =$_POST['bookname'];
+$days=$_POST['days'];
 $issuedate=DATE('d/m/y');
-echo $issuedate;
+
 $returndate=DATE('d/m/y' ,strtotime('+'.$days.'days'));
-echo $returndate;
+
 
 $obj=new data();
 $obj->setConnection();

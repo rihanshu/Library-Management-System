@@ -56,7 +56,7 @@ echo $msg;
                     </div>
                     <div class="form-group">
 
-                        <a href="#" class="ForgetPwd" value="Login">Forget Password?</a>
+                        <a href="registernewuser.php" class="ForgetPwd" value="Login">Not a Member? Register Now</a>
                     </div>
                 </form>
             </div>
