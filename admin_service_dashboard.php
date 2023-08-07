@@ -1,15 +1,5 @@
 <?php
 
-$openlink="";
-if (!empty($_REQUEST['openlink'])) {
-    $openlink = $_REQUEST['openlink'];
-    echo '<script type="text/javascript">',
-     'openCity(onload,$openlink);',
-     '</script>'
-;
-}
-
-
 $msg = "";
 if (!empty($_REQUEST['msg'])) {
     $msg = $_REQUEST['msg'];
@@ -209,10 +199,10 @@ if ($is_page_refreshed) {
 
 
 
-        <!-- <div id="Paris" class="tabcontent">
+        <div id="Paris" class="tabcontent">
             <h3>Paris</h3>
             <p>Paris is the capital of France.</p>
-        </div> -->
+        </div>
 
         <div id="addbook" class="tabcontent">
             <div>
