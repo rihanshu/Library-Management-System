@@ -1,0 +1,7 @@
+This is the requirements needed to run my project on your local machine
+PHP Version 3.3.1
+VS Code 
+Xampp Server
+Database.sql file
+Import the .sql file in your xampp localhost
+run the index.php file as it is the starter file.

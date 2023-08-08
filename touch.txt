@@ -1,0 +1,14 @@
+Requirements mentioned separately in requirements .txt
+
+This is the project made by Rihanshu Mahajan
+
+This web app can be used by giving reference to the owner
+
+Any changes to the project files can be done by sending the request
+
+PHP Version 3.3.1
+VS Code
+Xampp Server
+Database.sql file
+Import the .sql file in your xampp localhost
+run the index.php file as it is the starter file.
