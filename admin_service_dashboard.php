@@ -206,7 +206,7 @@ if ($is_page_refreshed) {
 
         <div id="addbook" class="tabcontent">
             <div>
-                <form action="addbookserver_page.php" method="post">
+                <form action="addbookserver_page.php" method="post" enctype="multipart/form-data">
                     <h3>ADD NEW BOOK</h3>
                     <div class="formstyle">
                         <label for="bookname">Book Name: </label><input type="text" name="bookname" id="bookname"> <br>
@@ -406,7 +406,7 @@ if ($is_page_refreshed) {
                     <p><b><u>Book Available:</u> &nbsp&nbsp</b>
                         <?php echo $bookava ?>
                     </p>
-                    <p><b><u>Book On Ren:</u> &nbsp&nbsp</b>
+                    <p><b><u>Book On Rent:</u> &nbsp&nbsp</b>
                         <?php echo $bookrent ?>
                     </p>
 
